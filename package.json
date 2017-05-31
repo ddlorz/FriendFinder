@@ -1,0 +1,28 @@
+{
+  "name": "friendfinder",
+  "version": "1.0.0",
+  "description": "friendfinder",
+  "main": "server.js",
+  "scripts": {
+    "test": "grunt",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/djrloria/FriendFinder.git"
+  },
+  "keywords": [
+    "placeholder"
+  ],
+  "author": "domingo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/djrloria/FriendFinder/issues"
+  },
+  "homepage": "https://github.com/djrloria/FriendFinder#readme",
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "express": "^4.15.3",
+    "path": "^0.12.7"
+  }
+}
