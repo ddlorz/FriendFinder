@@ -10,12 +10,12 @@ var PORT = 3000;
 
 //Middleware bodyparser setup
 app.use(bodyParser.json());
-/*app.use(bodyParser.urlencoded({
+app.use(bodyParser.urlencoded({
     extended: true
 }));
 app.use(bodyParser.json({
     type: "application/vnd.api+json"
-}));*/
+}));
 
 //Set of friends
 var people = [
@@ -36,9 +36,13 @@ var people = [
 app.get('/', function (req, res) {
     res.sendFile(path.join(__dirname, 'app/public/home.html'))
 });
-
 require('./app/routing/htmlRoutes')(app, __dirname);
 require('./app/routing/apiRoutes')(app, people);
+
+app.post('/api/friends', function(req, res) {
+    console.log(req.body);
+    res.json(true);
+});
 
 //Starts the server to listening
 app.listen(PORT, function() {
