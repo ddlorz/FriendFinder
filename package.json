@@ -29,5 +29,7 @@
     "foobar": "^1.1.0",
     "path": "^0.12.7"
   },
-  "engines": 
+  "engines": {
+    "node": "6.10.0"
+  }
 }
