@@ -4,7 +4,6 @@ var bodyParser = require('body-parser');
 var path = require('path');
 var people = require('./app/data/people')
 
-var peopleList = people(null);
 //Express app
 var app = express();
 var PORT = 3000;
@@ -12,20 +11,19 @@ var PORT = 3000;
 //Middleware bodyparser setup
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
-    extended: true
+  extended: true
 }));
 app.use(bodyParser.json({
-    type: "application/vnd.api+json"
+  type: "application/vnd.api+json"
 }));
-
-//Set of friends
 
 //Routing
 require('./app/routing/htmlRoutes')(app, __dirname);
-require('./app/routing/apiRoutes')(app, people());
+require('./app/routing/apiRoutes')(app, people(null));
 
 app.post('/api/friends', function(req, res) {
-    console.log(req.body);
+    //console.log(req.body);
+    var peopleList = people(null);
     var user = req.body;
     var scoreDiff = [];
     var bestFriend = 0;       
@@ -36,13 +34,13 @@ app.post('/api/friends', function(req, res) {
             sum = sum + Math.abs(parseInt(user.scores[x]) - parseInt(peopleList[i].scores[x]));
         }
         scoreDiff.push(sum);
-        if ((i > 0) && (scoreDiff[i-1]>scoreDiff[i])) {
+        if ((i > 0) && (scoreDiff[bestFriend]>scoreDiff[i])) {
+            //console.log(bestFriend);
             bestFriend = i;
         }
     }
-    //console.log(scoreDiff);
-    //console.log(bestFriend);
     people(user);
+    //console.log(scoreDiff);
     res.json(peopleList[bestFriend]);
 });
 
